@@ -10,12 +10,21 @@ require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-
+const cors = require('cors');
+app.use(cors());
+    // globally accessed
+app.use(cors({
+    origin: '*',
+    credentials: true
+}));
 // Connect to the database
 connectDB();
 
 app.use(bodyParser.json());
 
+app.get("/", (req, res) => {
+  res.json({ message: "Welcome to node js application." });
+});
 app.use('/api/auth', authRoutes);
 app.use('/api/reviews', reviewRoutes);
 
