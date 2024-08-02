@@ -41,11 +41,7 @@ exports.addReview = async (req, res) => {
       // Uncomment these lines if you want to use the event emitter
       reviewEventEmitter.emit('reviewAdded', savedReview);
 
-      res.status(201).json({ 
-        message: "Review added successfully",
-        review: savedReview,
-        // user: user
-      });
+      res.status(201).json(savedReview);
     } catch (err) {
       res.status(500).json({ error: err.message });
     }
